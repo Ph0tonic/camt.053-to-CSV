@@ -41,7 +41,7 @@ root = tree.getroot()
 # To allows double-clicking the CSV in Windows Explorer,
 # - comma should be the separator and
 # - encoding should be windows-1252
-f = open(outfile, "w", encoding="windows-1252")
+f = open(outfile, "w", encoding="utf-8")
 
 
 # Safe Access to Element.text
