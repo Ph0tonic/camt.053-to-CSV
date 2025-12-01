@@ -77,7 +77,7 @@ f.write(
     f"Kontoauszug\nKonto{p}{sa(s, './Acct/Id/IBAN')}\nWährung{p}{sa(s, './Acct/Ccy')}\nvon{p}{sa(s, './FrToDt/FrDtTm')}\nbis{p}{sa(s, './FrToDt/ToDtTm')}\nerstellt am{p}{sa(s, './CreDtTm')}\n"
 )
 f.write(
-    f"Booking Date{p}Valuta Date{p}Reversed{p}Status{p}Additional Info{p}Additional Tx Info{p}Number of Transactions in Booking{p}Amount{p}Currency{p}Credit/Debitor{p}Debitor{p}Creditor\n"
+    f"Booking Date{p}Valuta Date{p}Reversed{p}Status{p}Additional Info{p}Additional Tx Info{p}Number of Transactions in Booking{p}Amount{p}Currency{p}Credit/Debitor{p}Debitor{p}Creditor{p}Reference\n"
 )
 
 # Then iterate through the Ntry nodes - the bookings
@@ -105,6 +105,8 @@ for entry in root.findall(".//Ntry", ns):
         a = '"' + sa(tx, "RltdPties/Dbtr/Nm") + '",'
         f.write(a)
         a = '"' + sa(tx, "RltdPties/Cdtr/Nm") + '",'
+        f.write(a)
+        a = '"' + sa(tx, "RmtInf/Ustrd") + '",'
         f.write(a)
         f.write("\n")
 
