@@ -31,7 +31,7 @@ try:
 except:
     import PySimpleGUI as sg
 
-    infile = sg.popup_get_file(
+    infile = sg.PopupGetFile(
         "Please select the file in CAMT.054 format", default_path=infile
     )
 
