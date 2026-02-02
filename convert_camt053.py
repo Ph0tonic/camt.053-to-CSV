@@ -135,3 +135,9 @@ for entry in root.findall(".//Ntry", ns):
         f.write("\n")
 
 f.close()
+
+print(f"Conversion completed successfully!")
+print(f"Output file: {outfile}")
+
+# Wait for user input before closing (useful on Windows)
+input("\nPress Enter to exit...")
