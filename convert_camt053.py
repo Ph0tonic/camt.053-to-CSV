@@ -10,8 +10,9 @@
 
 # 28. March 2023 Joerg Kummer
 
-import PySimpleGUI as sg
+# import PySimpleGUI as sg
 import xml.etree.ElementTree as ET
+import sys
 
 # CAMT.053 Namespace is used as the default namespace (i.e. empty string in code)
 # more namespaces can be included
@@ -22,9 +23,8 @@ ns = {"": "urn:iso:std:iso:20022:tech:xsd:camt.053.001.04"}
 # Explorer and import dialogs can be skipped
 
 infile = ""
-infile = sg.popup_get_file(
-    "Please select the file in CAMT.053 format", default_path=infile
-)
+infile = sys.argv[1]
+# infile= sg.popup_get_file('Please select the file in CAMT.053 format',default_path=infile)
 if not infile:
     exit()
 
