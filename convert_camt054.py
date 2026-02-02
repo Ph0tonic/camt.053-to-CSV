@@ -29,11 +29,18 @@ infile = ""
 try:
     infile = sys.argv[1]
 except:
-    import PySimpleGUI as sg
+    try:
+        import PySimpleGUI as sg
 
-    infile = sg.PopupGetFile(
-        "Please select the file in CAMT.054 format", default_path=infile
-    )
+        sg.popup_get_file(
+            "Please select the file in CAMT.054 format", default_path=infile
+        )
+    except (ImportError, AttributeError):
+        print("Usage: python convert_camt054.py <path_to_camt054_file.xml>")
+        print(
+            "Error: Please provide a CAMT.054 XML file as argument or install PySimpleGUI for GUI file selection"
+        )
+        sys.exit(1)
 
 if not infile:
     exit()
