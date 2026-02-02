@@ -23,10 +23,34 @@ ns = {"": "urn:iso:std:iso:20022:tech:xsd:camt.053.001.04"}
 # Explorer and import dialogs can be skipped
 
 infile = ""
-infile = sys.argv[1]
-# infile= sg.popup_get_file('Please select the file in CAMT.053 format',default_path=infile)
-if not infile:
-    exit()
+try:
+    infile = sys.argv[1]
+except:
+    try:
+        from tkinter import Tk
+        from tkinter.filedialog import askopenfilename
+
+        print("No file argument provided, opening file selection dialog...")
+        Tk().withdraw()  # Hide the main window
+        infile = askopenfilename(
+            title="Select CAMT.054 XML file",
+            filetypes=[("XML files", "*.xml"), ("All files", "*.*")],
+        )
+        if infile:
+            print(f"Selected file: {infile}")
+    except ImportError as e:
+        print("ERROR: tkinter is not available")
+        print(f"Details: {e}")
+        print("\nUsage: python convert_camt054.py <path_to_camt054_file.xml>")
+        print("Please provide a CAMT.054 XML file as argument")
+        sys.exit(1)
+    except Exception as e:
+        print(f"ERROR: Failed to open file dialog")
+        print(f"Details: {e}")
+        print("\nUsage: python convert_camt054.py <path_to_camt054_file.xml>")
+        print("Please provide a CAMT.054 XML file as argument")
+        sys.exit(1)
+
 
 outfile = infile + ".csv"
 print(f"Converting to output CSV File at\n{outfile}")
