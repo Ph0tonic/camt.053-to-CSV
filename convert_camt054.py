@@ -12,7 +12,6 @@
 # Adapted for CAMT.054 (Debit/Credit Notification)
 # 2 February 2026
 
-# import PySimpleGUI as sg
 import xml.etree.ElementTree as ET
 import sys
 
@@ -27,8 +26,15 @@ ns = {"": "urn:iso:std:iso:20022:tech:xsd:camt.054.001.08"}
 # Explorer and import dialogs can be skipped
 
 infile = ""
-infile = sys.argv[1]
-# infile= sg.popup_get_file('Please select the file in CAMT.054 format',default_path=infile)
+try:
+    infile = sys.argv[1]
+except:
+    import PySimpleGUI as sg
+
+    infile = sg.popup_get_file(
+        "Please select the file in CAMT.054 format", default_path=infile
+    )
+
 if not infile:
     exit()
 
